@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Menu -->
+<nav>
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1 class="typing">Divyashree</h1>
+            <p id="typing">Web Developer | Designer | Problem Solver</p>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about"class="fade-in">
+        <div class="container">
+            <img src="girl.jpg" alt="Your Name">
+            <div>
+                <h2>About Me</h2>
+                <p>Welcome to my personal website! I’m Divyashree, a technology enthusiast with a passion for web development, artificial intelligence, and problem-solving. Currently, I am pursuing my studies in B.Tech(Information Technologies), where I enjoy learning new technologies and building real-world projects. I love designing clean and responsive websites, developing creative solutions, and continuously improving my coding skills. In my free time, I explore AI tools, contribute to open-source projects, and participate in coding challenges to sharpen my logical thinking.</p>
+            </div>
+        </div>
+    </section>
+
+  <!-- Skills Section -->
+<section id="skills" class="fade-in">
+    <div class="container">
+        <h2>Skills</h2>
+
+        <div class="skill">
+            <p>HTML</p>
+            <div class="skill-bar">
+                <div class="fill"style="width: 90%">90%</div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <p>CSS</p>
+            <div class="skill-bar">
+                <div class="fill"style="width: 85%">85%</div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <p>JavaScript</p>
+            <div class="skill-bar">
+                <div class="fill" style="width:75%">75%</div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <p>C</p>
+            <div class="skill-bar">
+                <div class="fill"style="width:85%">85%</div>
+            </div>
+        </div>
+
+        <div class="skill">
+            <p>Python</p>
+            <div class="skill-bar">
+                <div class="fill"style="width:80%">80%</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Projects Section -->
+    <section id="projects"class="fade-in">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project">
+                <img src="project 1.png" alt="Project 1">
+                <h3>Bakery Website</h3>
+                <p>This project is a website about a cake bakery.That I have created using HTML and CSS.In that website it contains a home page,menu,a about us page and contact us page </p>
+            </div>
+            <div class="project">
+                <img src="project2.png" alt="Project 2">
+                <h3>Quiz website</h3>
+                <p>This project is a website about a online quiz making website that I have created usinng HTML,CSS and Javascript.It has welcome page to start the quiz and in next page the website will be having some questions and in last page of the website it will show the score we have scored</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume"class="fade-in">
+        <div class="container">
+            <h2>Resume</h2>
+            <a href="Divya Resume.pdf" download class="Divya Resume-btn"> 📄Download My Resume (PDF)</a>
+        </div>
+    </section>
+<!-- Contact Section -->
+<section id="contact"class="fade-in">
+    <div class="container">
+        <h2>Contact</h2>
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="_replyto" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Divyashree | All Rights Reserved</p>
+        </div>
+    </footer>
+    <script>
+    window.addEventListener("scroll", () => {
+        document.querySelectorAll(".fill").forEach(bar => {
+            const rect = bar.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 50) {
+                bar.style.width = bar.getAttribute("style").split(":")[1];
+            }
+        });
+    });
+    const faders = document.querySelectorAll('.fade-in');
+
+const appearOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px"
+};
+
+const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            return;
+        } else {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, appearOptions);
+
+faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+});
+document.addEventListener("DOMContentLoaded", function () {
+    let skillsSection = document.querySelector("#skills");
+    let bars = document.querySelectorAll(".fill");
+    let animated = false;
+
+    function animateBars() {
+        if (!animated && skillsSection.getBoundingClientRect().top < window.innerHeight) {
+            bars.forEach(bar => {
+                let finalWidth = bar.getAttribute("data-width");
+                bar.style.width = finalWidth + "%";
+            });
+            animated = true;
+        }
+    }
+
+    window.addEventListener("scroll", animateBars);
+});
+</script>
+</body>
+</html>
